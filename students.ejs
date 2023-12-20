@@ -15,6 +15,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Mobile Number</th>
+            <th>Actions</th>
         </tr>
         <% if(expenses.length> 0){%>
             <% for(var i=0; i < expenses.length; i++){%>
@@ -22,6 +23,7 @@
                     <td><%- expenses[i].name %></td>
                     <td><%- expenses[i].email %></td>
                     <td><%- expenses[i].mno %></td>
+                    <td><a href="/delete-student?name=<%- expenses[i].name%>">Delete</a></td>
                 </tr>
                 <%}%>
                     <%}else{%>

@@ -45,6 +45,21 @@ app.get('/students', function (req, res) {
             res.render(__dirname + "/students", { expenses: result })
         });
     })
+});
+
+app.get("/delete-student", function (req, res) {
+    con.connect(function (error) {
+        if (error) console.log(error);
+
+        var sql = "delete from expenses where name=?";
+
+        var name = req.query.name;
+
+        con.query(sql, [name], function (error, result) {
+            if (error) console.log(error);
+            res.redirect('/students')
+        });
+    })
 })
 app.listen(5000);
 
