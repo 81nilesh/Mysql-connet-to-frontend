@@ -61,5 +61,41 @@ app.get("/delete-student", function (req, res) {
         });
     })
 })
+
+app.get("/update-student", function (req, res) {
+    con.connect(function (error) {
+        if (error) console.log(error);
+
+        var sql = "select * from expenses where name=?";
+
+        var name = req.query.name;
+
+        con.query(sql, [name], function (error, result) {
+            if (error) console.log(error);
+            res.render(__dirname + "/update-student", { expenses: result });
+        });
+    })
+})
+
+app.get('/update-student', function (req, res) {
+
+
+    var name = req.body.name;
+    var email = req.body.email;
+    var mno = req.body.mno;
+    var id = req.body.id;
+
+
+    con.connect(function (error) {
+        if (error) console.log(error);
+
+        var sql = "UPDATE expenses set name=?, email=?, mno=? where id=?";
+
+        con.query(sql, [name, email, mno], function (error, result) {
+            if (error) console.log(error);
+            res.redirect('/students')
+        });
+    })
+})
 app.listen(5000);
 
